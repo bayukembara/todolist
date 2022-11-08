@@ -1,0 +1,39 @@
+<%- include("partial/header") %>
+     <div class="grid place-items-center w-screen rounded mt-3">
+          <h1 class="text-center font-bold bg-[#F1FAEE] w-3/12 content-center p-5 text-4xl text-slate-700">
+               <%= dataTitle %>
+          </h1>
+     </div>
+     <div class="flex items-center w-full justify-center bg-teal-lightest font-sans">
+          <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+               <h1 class="text-center text-2xl">Todo List</h1>
+               <div class="flex mt-4">
+                    <form action="/" method="post" class="flex w-full">
+                         <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 mr-4"
+                              placeholder="Add Todo" name="newList">
+                         <button type="submit"
+                              class="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-cyan-600 hover:border-cyan-600">Add
+                         </button>
+                    </form>
+               </div>
+
+               <% newList.forEach((list)=>{ %>
+                    <% if(list.length===0) {%>
+                         <% }else{ %>
+                              <div class="flex mb-4 mt-4 items-center">
+                                   <form action="/delete" method="post" class="flex">
+                                        <input type="checkbox" name="checkedId" id="" value="<%= list._id %> "
+                                             class="flex-no-shrink p-2 ml-2 mr-4 border-2 rounded w-5 h-5 drop-shadow-lg"
+                                             onclick="this.form.submit()">
+                                        <p class="w-full-text-grey-darkest text-xl">
+                                             <%= list.name %>
+                                        </p>
+                                   </form>
+                              </div>
+                              <% } %>
+                                   <% }) %>
+
+          </div>
+     </div>
+
+     <%- include("partial/footer") %>
